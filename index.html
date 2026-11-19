@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diego Bottan</title>
+  <meta name="description" content="CV of Diego Bottan.">
+  <meta name="theme-color" content="#FFF8E2">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Oi&display=swap">
+  <link rel="icon" href="./assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="./assets/icons/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="./assets/icons/icon.png">
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- Deliberately blocking and in <head>: it sets the saved theme and
+       language on <html> before the first paint, so there is no flash. -->
+  <script src="./assets/js/script.js"></script>
+</head>
+
+<body>
+  <div class="page">
+    <header class="masthead">
+      <div class="topbar">
+        <span class="cmy" aria-hidden="true"><i></i><i></i><i></i></span>
+
+        <div class="toolbar">
+          <!-- Language switch (globe icon + current language code) -->
+          <button type="button" class="control" id="lang-toggle" aria-label="Mudar para português" title="Mudar para português">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M3 12h18"/>
+              <path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/>
+            </svg>
+            <span id="lang-code">EN</span>
+          </button>
+
+          <!-- Theme switch (shows the theme it will switch to) -->
+          <button type="button" class="control" id="theme-toggle" aria-label="Switch to dark theme" title="Switch to dark theme">
+            <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/>
+            </svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="identity">
+        <h1 class="name">DIEGO BOTTAN
+        </h1>
+        <p class="role">
+          <span lang="en">Project Leader / Operations Manager / Hands-on Builder</span>
+          <span lang="pt-BR">Líder de Projetos e Gerente de Operações Hands on</span>
+        </p>
+
+        <ul class="contact">
+            <li><span class="contact-icon" aria-hidden="true">&#xF01EE;</span><a href="mailto:diego@bottan.dev">diego@bottan.dev</a></li>
+            <li><span class="contact-icon" aria-hidden="true">&#xF03F2;</span><a href="tel:+551198312944">+551198312944</a></li>
+            <li><span class="contact-icon" aria-hidden="true">&#xF033B;</span><a href="https://www.linkedin.com/in/diegobottan">/diegobottan</a></li>
+            <li><span class="contact-icon" aria-hidden="true">&#xF02A4;</span><a href="https://github.com/bottanpontocom">/bottanpontocom</a></li>
+            <li><span class="contact-icon" aria-hidden="true">&#xF034E;</span><a lang="en" href="https://www.google.com/maps/place/Taubat%C3%A9+-+S%C3%A3o+Paulo/@-23.0861015,-45.5894514,12z/data=!3m1!4b1!4m6!3m5!1s0x94ccf85a19af0d3b:0x49ca42b1ddb2b41f!8m2!3d-23.024996!4d-45.5638792!16zL20vMDUwaDNx?entry=ttu&amp;g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D">Taubaté, Brazil</a><a lang="pt-BR" href="https://www.google.com/maps/place/Taubat%C3%A9+-+S%C3%A3o+Paulo/@-23.0861015,-45.5894514,12z/data=!3m1!4b1!4m6!3m5!1s0x94ccf85a19af0d3b:0x49ca42b1ddb2b41f!8m2!3d-23.024996!4d-45.5638792!16zL20vMDUwaDNx?entry=ttu&amp;g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D">Taubaté, Brasil</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- Profile -->
+      <section class="section" aria-labelledby="h-profile">
+        <h2 class="section-title" id="h-profile">
+          <span lang="en">Profile</span>
+          <span lang="pt-BR">Perfil</span>
+        </h2>
+        <div class="section-body">
+          <p lang="en">Versatile Project and Delivery Leader with extensive experience managing full project lifecycles, client relations, and multidisciplinary teams. Proven track record in defining scope, negotiating deadlines, recruiting and training talent, and optimizing production workflows to deliver high-quality results. Combines strategic resource allocation with hands-on technical execution to proactively resolve bottlenecks and ensure alignment between client expectations and team delivery.</p>
+          <p lang="pt-BR">Líder de Projetos e Delivery com experiência em ciclos completos, gestão de equipes e relacionamento com clientes. Histórico em definição de escopo, recrutamento e otimização de fluxos produtivos. Une visão estratégica e atuação prática (hands-on) para resolver gargalos e garantir entregas alinhadas às expectativas.</p>
+        </div>
+      </section>
+
+      <!-- Experience: duplicate an <article class="entry"> for each role -->
+      <section class="section" aria-labelledby="h-experience">
+        <h2 class="section-title" id="h-experience">
+          <span lang="en">Experience</span>
+          <span lang="pt-BR">Experiência</span>
+        </h2>
+        <div class="section-body">
+
+          <article class="entry">
+            <div class="entry-head">
+              <h3 class="entry-title">
+                <span lang="en">Project Coordinator</span>
+                <span lang="pt-BR">Coordenador de Projetos</span>
+              </h3>
+              <p class="entry-dates">
+                2025 –
+                <span lang="en">Present</span><span lang="pt-BR">Atual</span>
+              </p>
+            </div>
+            <p class="entry-org">HiDesign Estúdio, São Caetano do Sul</p>
+            <ul class="bullets">
+                <li lang="en">Managed end-to-end production of digital educational books for PNLD, ensuring strict compliance with WCAG, EPUB Accessibility, and MEC requirements.</li>
+                <li lang="pt-BR">Gerenciei a produção ponta a ponta de livros didáticos digitais para o PNLD, garantindo conformidade com WCAG, acessibilidade EPUB e requisitos do MEC.</li>
+                <li lang="en">Recruited, trained, and led multidisciplinary teams, establishing workflows to scale inclusive learning material production.</li>
+                <li lang="pt-BR">Recrutei, treinei e liderei equipes multidisciplinares, estruturando fluxos para escalar a produção de conteúdos inclusivos.</li>
+                <li lang="en">Optimized timelines and scope via client negotiations and daily huddles, consistently meeting critical government delivery deadlines.</li>
+                <li lang="pt-BR">Otimizei cronogramas e escopos por meio de negociações e alinhamentos diários, cumprindo prazos de entrega governamentais críticos.</li>
+                <li lang="en">Provided hands-on technical intervention during critical production phases to resolve complex bottlenecks, ensuring seamless digital distribution.</li>
+                <li lang="pt-BR">Atuei de forma prática (hands-on) em fases críticas de produção para solucionar gargalos complexos, garantindo distribuição digital sem falhas.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry-head">
+              <h3 class="entry-title">
+                <span lang="en">Art Coordinator</span>
+                <span lang="pt-BR">Coordenador de Arte</span>
+              </h3>
+              <p class="entry-dates">2019 – 2025</p>
+            </div>
+            <p class="entry-org">HiDesign Estúdio, São Caetano do Sul</p>
+            <ul class="bullets">
+              <li lang="en">Served as the primary liaison between stakeholders, organizing and distributing tasks between layout and illustration teams.</li>
+              <li lang="pt-BR">Atuei como elo principal entre autores, editores e produção, organizando e distribuindo tarefas entre as equipes de layout e ilustração.</li>
+              <li lang="en">Managed production workflows, proactively resolving bottlenecks and conflicts with the layout team to keep projects on schedule.</li>
+              <li lang="pt-BR">Gerenciei fluxos produtivos e resolvi proativamente gargalos com a equipe de layout para manter os prazos.</li>
+              <li lang="en">Conducted rigorous quality checks and proofing of laid-out materials, ensuring strict adherence to editorial and visual standards.</li>
+              <li lang="pt-BR">Realizei revisão e controle de qualidade de materiais diagramados, assegurando conformidade com padrões editoriais e visuais.</li>
+              <li lang="en">Led the onboarding and training of new team members, accelerating their integration into production processes.</li>
+              <li lang="pt-BR">Conduzi o onboarding e treinamento de novos colaboradores, agilizando sua integração aos processos produtivos.</li>
+            </ul>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Selected projects -->
+      <!-- <section class="section" aria-labelledby="h-work">
+        <h2 class="section-title" id="h-work">
+          <span lang="en">Selected projects</span>
+          <span lang="pt-BR">Projetos selecionados</span>
+        </h2>
+        <div class="section-body">
+
+          <article class="entry">
+            <div class="entry-head">
+              <h3 class="entry-title">
+                noprecinho
+              </h3>
+              <div class="entry-dates project-links">
+                <a href="https://bottanpontocom.github.io/noprecinho/">
+                  <span lang="en">Live demo</span>
+                  <span lang="pt-BR">Demonstração</span>
+                </a>
+                <a href="https://github.com/bottanpontocom/noprecinho">
+                  <span lang="en">GitHub repository</span>
+                  <span lang="pt-BR">Repositório GitHub</span>
+                </a>
+              </div>
+            </div>
+            <ul class="bullets project-bullets">
+                <li lang="en">A responsive Progressive Web App (PWA) for tracking  purchases and calculating unit costs to help users find the best deals</li>
+                <li lang="pt-BR">Um Progressive Web App (PWA) responsivo para controle de compras de supermercado e cálculo de custo unitário focado em encontrar as melhores ofertas</li>
+                <li lang="en">Key functionalities include unit price comparison, store-by-store price tracking, CSV data import/export, and offline-first local storage</li>
+                <li lang="pt-BR">Principais funcionalidades incluem comparação de preço unitário, rastreamento de preços por estabelecimento, importação/exportação de dados via CSV e suporte offline.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry-head">
+              <h3 class="entry-title">
+                tostão
+              </h3>
+              <div class="entry-dates project-links">
+                <a href="https://bottanpontocom.github.io/tostao/">
+                  <span lang="en">Live demo</span>
+                  <span lang="pt-BR">Demonstração</span>
+                </a>
+                <a href="https://github.com/bottanpontocom/tostao">
+                  <span lang="en">GitHub repository</span>
+                  <span lang="pt-BR">Repositório GitHub</span>
+                </a>
+              </div>
+            </div>
+            <ul class="bullets project-bullets">
+                <li lang="en">A Progressive Web App (PWA) designed for personal finance tracking, featuring expense categorization, savings goals, and visual monthly breakdowns.</li>
+                <li lang="pt-BR">Um Progressive Web App (PWA) de finanças pessoais para controle de receitas, despesas, metas de economia e gráficos visuais mensais.</li>
+                <li lang="en">Key functionalities include transaction tracking, an interactive piggy bank savings tracker, category-based donut charts, and data backup tools.</li>
+                <li lang="pt-BR">Principais funcionalidades incluem registro de transações, cofrinho interativo com metas de economia, gráfico de rosca por categoria e ferramentas de backup.</li>
+            </ul>
+          </article>
+
+        </div>
+      </section> -->
+
+      <!-- Skills -->
+      <section class="section" aria-labelledby="h-skills">
+        <h2 class="section-title" id="h-skills">
+          <span lang="en">Skills</span>
+          <span lang="pt-BR">Competências</span>
+        </h2>
+        <div class="section-body">
+          <ul class="plain-list">
+            <li>Adobe Suite</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Git</li>
+            <li>Figma</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Languages -->
+      <section class="section" aria-labelledby="h-languages">
+        <h2 class="section-title" id="h-languages">
+          <span lang="en">Languages</span>
+          <span lang="pt-BR">Idiomas</span>
+        </h2>
+        <div class="section-body">
+          <ul class="language-list">
+            <li>
+              <span lang="en">Portuguese</span><span lang="pt-BR">Português</span>
+              <span class="language-level" lang="en">Native</span><span class="language-level" lang="pt-BR">Nativo</span>
+            </li>
+            <li>
+              <span lang="en">English</span><span lang="pt-BR">Inglês</span>
+              <span class="language-level" lang="en">Fluent</span><span class="language-level" lang="pt-BR">Fluente</span>
+            </li>
+            <li>
+              <span lang="en">Spanish</span><span lang="pt-BR">Espanhol</span>
+              <span class="language-level" lang="en">Intermediate</span><span class="language-level" lang="pt-BR">Intermediário</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="colophon">
+      <span class="cmy" aria-hidden="true"><i></i><i></i><i></i></span>
+      <p>
+        <span lang="en">Last updated October 2026</span>
+        <span lang="pt-BR">Atualizado em outubro de 2026</span>
+      </p>
+    </footer>
+
+  </div>
+</body>
+</html>

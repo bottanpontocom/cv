@@ -1,0 +1,572 @@
+/* ==========================================================================
+   Résumé — style.css
+
+   Structure
+   1. Tokens (palette, themes, type)
+   2. Base
+   3. Bilingual content switch
+   4. Masthead (top bar, controls, name, contact)
+   5. Sections (hanging labels), entries, lists
+   6. Colophon
+   7. Responsive
+   8. Print
+   ========================================================================== */
+
+
+/* 1. Tokens
+   -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Resume Symbols";
+  src: url("../fonts/symbols.woff2") format("woff2");
+  font-style: normal;
+  font-weight: normal;
+  font-display: block;
+}
+
+:root {
+  /* Palette */
+  --black:   #2C2C2C;
+  --yellow:  #FFD700;
+  --magenta: #FF1493;
+  --cyan:    #40E0D0;
+  --paper:   #FFF8E2;
+
+  /* Semantic tokens: light theme */
+  --bg:             var(--paper);
+  --ink:            var(--black);
+  --ink-soft:       color-mix(in srgb, var(--ink) 72%, var(--bg));
+  --rule:           color-mix(in srgb, var(--ink) 20%, var(--bg));
+  --control-border: color-mix(in srgb, var(--ink) 32%, var(--bg));
+  color-scheme: light;
+
+  /* Type
+     Oi is a single-weight display face: used for the name only.
+     JetBrains Mono carries everything else. */
+  --font-display: "Oi", "Arial Black", "Helvetica Neue", Impact, sans-serif;
+  --font-text:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Layout */
+  --label-w: 7.5rem;
+  --gutter:  clamp(1.25rem, 5vw, 3rem);
+}
+
+/* Dark theme swaps ink and paper; the accents stay as they are. */
+:root[data-theme="dark"] {
+  --bg:  var(--black);
+  --ink: var(--paper);
+  color-scheme: dark;
+}
+
+
+/* 2. Base
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  font-feature-settings: "calt" 0; /* no code ligatures in prose */
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--black);
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color 0.15s ease;
+}
+
+a:hover {
+  text-decoration-color: var(--magenta);
+  text-decoration-thickness: 2px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--magenta);
+  outline-offset: 3px;
+}
+
+h1, h2, h3, p, ul {
+  margin: 0;
+}
+
+.page {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1.5rem var(--gutter) 3rem;
+}
+
+
+/* 3. Bilingual content switch
+   Content is written twice, once per language, using the native lang
+   attribute. script.js keeps <html lang> in sync; the rule below hides
+   whichever language is not active.
+   -------------------------------------------------------------------------- */
+
+html[lang="en"]    [lang="pt-BR"],
+html[lang="pt-BR"] [lang="en"] {
+  display: none !important;
+}
+
+
+/* 4. Masthead
+   -------------------------------------------------------------------------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: clamp(2.5rem, 7vw, 5rem);
+}
+
+/* Colour bar, borrowed from the logo and from the strip on a press proof */
+.cmy {
+  display: inline-flex;
+  gap: 3px;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.cmy i {
+  display: block;
+  width: 1.1rem;
+  height: 0.6rem;
+  transform: skewX(-30deg);
+}
+
+.cmy i:nth-child(1) { background: var(--cyan); }
+.cmy i:nth-child(2) { background: var(--magenta); }
+.cmy i:nth-child(3) { background: var(--yellow); }
+
+.toolbar {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  padding: 0 0.6rem;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--control-border);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.control:hover {
+  border-color: var(--magenta);
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--magenta);
+  outline-offset: 2px;
+}
+
+.control svg {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+#lang-code {
+  letter-spacing: 0.04em;
+}
+
+/* The theme button shows the theme it will switch to */
+.icon-sun { display: none; }
+:root[data-theme="dark"] .icon-sun  { display: block; }
+:root[data-theme="dark"] .icon-moon { display: none; }
+
+.masthead {
+  padding-bottom: 2.5rem;
+}
+
+/* Name and contact share the first row, so the contact column can be exactly
+   as tall as the name. The role sits in the second row, under the name.
+
+     name     contact
+     role     .
+*/
+.identity {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "name contact"
+    "role .";
+  align-items: start;
+  column-gap: 2rem;
+}
+
+/* The name stacks one word per line by design: width: min-content makes
+   every space a line break, so the lockup is the same at any viewport. */
+.name {
+  grid-area: name;
+  width: min-content;
+  max-width: 100%;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-synthesis: none;      /* Oi has one weight: never fake a bold */
+  font-size: clamp(3.35rem, 10.6vw, 5.8rem);
+  line-height: 1.035;
+  letter-spacing: 0.015em;
+  overflow-wrap: break-word; /* last resort for a very long single word */
+}
+
+.role {
+  grid-area: role;
+  justify-self: start;
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 0.28em;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 0.16em;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* The column stretches to the height of the name (align-self: stretch) and
+   spreads its lines evenly from top to bottom (justify-content). The gap is
+   the minimum spacing if the name is ever shorter than the stack. */
+.contact {
+  grid-area: contact;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 0.25rem;
+  max-width: 17rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ink-soft);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.contact li {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.contact li a {
+  display: inline-block;
+  text-align: right;
+}
+
+.contact-icon {
+  flex: none;
+  color: var(--ink);
+  font-family: "Resume Symbols";
+  font-size: 0.9rem;
+  font-weight: normal;
+  line-height: 1;
+}
+
+/* Optical alignment, where text-box-trim is supported (Chrome and Edge 133+,
+   Safari 18.2+). The name is trimmed to cap-top and baseline, so its box is
+   exactly as tall as its letters. The contact column is then pulled out by
+   the empty space above the first line's capitals and below the last line's
+   baseline, so the first contact line starts level with the top of the name
+   and the last one sits on the name's baseline.
+   The two values are for JetBrains Mono at line-height 1.7; if you change
+   either, nudge them until the top and bottom line up. */
+@supports (text-box-trim: trim-both) {
+  .name {
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+  }
+
+  .contact {
+    --trim-top: 0.48em;
+    --trim-bottom: 0.49em;
+    margin-block: calc(var(--trim-top) * -1) calc(var(--trim-bottom) * -1);
+  }
+}
+
+
+/* 5. Sections
+   Each section hangs its title in a left column, so every block of
+   content starts on the same vertical line.
+   -------------------------------------------------------------------------- */
+
+.section {
+  display: grid;
+  grid-template-columns: var(--label-w) minmax(0, 1fr);
+  column-gap: 2rem;
+  padding-block: 1.75rem 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.section-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+/* Flex + gap, not sibling margins: hidden language twins must not add space */
+.section-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+}
+
+.entry-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 1.5rem;
+}
+
+.entry-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.entry-dates {
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.project-links {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.35rem 1rem;
+  font-size: 0.75rem;
+}
+
+.project-links a {
+  white-space: nowrap;
+}
+
+.entry-org {
+  color: var(--ink-soft);
+}
+
+.entry-text {
+  margin-top: 0.6rem;
+}
+
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.6rem;
+  padding: 0;
+  list-style: none;
+}
+
+.bullets li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  top: 0.7em;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: var(--magenta);
+  transform: skewX(-30deg);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.project-bullets li::before {
+  background: var(--cyan);
+}
+
+.plain-list {
+  padding: 0;
+  list-style: none;
+  columns: 2 12rem;
+  column-gap: 2rem;
+}
+
+.plain-list li {
+  break-inside: avoid;
+}
+
+.language-list {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  padding: 0;
+  list-style: none;
+}
+
+.language-list li {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  width: 100%;
+  column-gap: 1.5rem;
+  padding-block: 0.15rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.language-list li:last-child {
+  border-bottom: 0;
+}
+
+.language-level {
+  color: var(--ink-soft);
+}
+
+
+/* 6. Colophon
+   -------------------------------------------------------------------------- */
+
+.colophon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-size: 0.8125rem;
+}
+
+
+/* 7. Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 48rem) {
+  .identity {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "name"
+      "role"
+      "contact";
+  }
+
+  /* Stacked: no name to match, so drop the stretch and the trim offsets */
+  .contact {
+    align-self: auto;
+    justify-self: end;
+    margin: 1.75rem 0 0;
+  }
+}
+
+@media (max-width: 42rem) {
+  .section {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.75rem;
+  }
+
+  .entry-dates {
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
+
+
+/* 8. Print
+   Always prints on white with dark ink, whatever theme is active.
+   Only the active language is printed.
+   -------------------------------------------------------------------------- */
+
+@page {
+  size: A4;
+  margin: 14mm;
+}
+
+@media print {
+  :root,
+  :root[data-theme="dark"] {
+    --bg: #ffffff;
+    --ink: var(--black);
+  }
+
+  body {
+    font-size: 9.5pt;
+    line-height: 1.55;
+  }
+
+  .page {
+    max-width: none;
+    padding: 0;
+  }
+
+  .toolbar {
+    display: none;
+  }
+
+  .topbar {
+    margin-bottom: 1.5rem;
+  }
+
+  .name {
+    font-size: 46pt;
+  }
+
+  .section {
+    padding-block: 1.1rem 1.25rem;
+  }
+
+  .entry,
+  .language-list li {
+    break-inside: avoid;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
